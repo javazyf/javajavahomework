@@ -16,11 +16,9 @@ import post_upload.*;
 import search.Sea_Post;
 import View.*;
 
-/*@author vivian
- */
 public class MainPage1 extends javax.swing.JFrame {
 
-    long user_id;
+    private long user_id;
     
     public MainPage1(long user_id) {
         Upper = new BackGroundJPanel();
@@ -156,7 +154,6 @@ public class MainPage1 extends javax.swing.JFrame {
         ArrayList a = new ArrayList(); 
         a = searchSerDB.search_post(0); //搜索公共菜谱，返回long[]，为帖子id数组
 		int number=a.size();
-        
         for(int i=0;i<number;i++){
         
         int b[] = new int[100]; 
@@ -235,41 +232,6 @@ public class MainPage1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-  /*      javax.swing.GroupLayout postLayout = new javax.swing.GroupLayout(post[i]);
-        post[i].setLayout(postLayout);
-        postLayout.setHorizontalGroup(
-            postLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(postLayout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
-                .addComponent(jScrollPane[i], javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLable[i])
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton[i][0])
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton[i][1])
-                .addGap(37, 37, 37))
-        );
-        postLayout.setVerticalGroup(
-            postLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(postLayout.createSequentialGroup()
-                .addGroup(postLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(postLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(postLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLable[i])
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton[i][0])
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton[i][1])
-                            .addGap(39, 39, 39))))
-                    .addGroup(postLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane[i], javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        */
-
         PostBody.add(post[b[i]]);      
         }
         
@@ -299,6 +261,7 @@ public class MainPage1 extends javax.swing.JFrame {
         setResizable(false);
 		setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
     
     public void New_PostActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_SearchActionPerformed
         // TODO add your handling code here:
@@ -341,51 +304,13 @@ public class MainPage1 extends javax.swing.JFrame {
     	PostView postView=new PostView(user_id,b);
         postView.setVisible(true);
     } 
+    
     private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_private_postActionPerformed
         MainPage1.this.setVisible(false);
-        new PersonalHpmepage(user_id).setVisible(true);  //杈撳叆鐢ㄦ埛ID锛屾墦寮�MyCollection
-     }//GEN-LAST:event_private_postActionPerformed
-
-    	// TODO add your handling code here:
-    //GEN-LAST:event_jButton24ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainPage1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainPage1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainPage1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainPage1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainPage1(1).setVisible(true);
-            }
-        });
-    }*/
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+        PersonalHpmepage ph = new PersonalHpmepage(user_id);
+        ph.setVisible(true);  //杈撳叆鐢ㄦ埛ID锛屾墦寮�MyCollection
+     }
+    
     private JButton Logout;
     private JButton New_Post;
 

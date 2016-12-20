@@ -212,7 +212,7 @@ public class Sea_Post extends javax.swing.JFrame {
                 )
             );
         
-        pack();
+//        pack();
     }    
     
     public void Tag1ActionPerformed(java.awt.event.ActionEvent e) throws IOException {                                     

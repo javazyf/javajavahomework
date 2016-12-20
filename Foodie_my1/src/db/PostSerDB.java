@@ -25,22 +25,21 @@ public class PostSerDB {
 	//插入发帖最原始，分配id
 	public long post(){//给用户分配ID,返回id
 		conn = getconn.getConection();
-		long post_id = 2016001;
+		long post_id = 1;
 		long writerid = 0;
 		String title = "123123";
 		int tag = 1;
 		int visible = 0;
+		int price = 0;
 		
 		try{
 			String sql_query = "select post_id from homework.post";
 			st = (Statement) conn.createStatement();
 			rs = st.executeQuery(sql_query);
 			while(rs.next()){
-				post_id = rs.getLong(1);
-				System.out.println("you post_id is "+post_id);
-			}
 			post_id = post_id +1;
-			String sql_insert = "insert into homework.post(post_id,post_writerid,post_title,post_tag1,post_visible) values ('"+post_id+"','"+writerid+"','"+title+"','"+tag+"','"+visible+"')";
+			}
+			String sql_insert = "insert into homework.post(post_id,post_writerid,post_title,post_tag1,post_visible,post_price) values ('"+post_id+"','"+writerid+"','"+title+"','"+tag+"','"+visible+"','"+price+"')";
 			st.executeUpdate(sql_insert);
 			conn.close();
 		}catch(SQLException e){
@@ -55,8 +54,6 @@ public class PostSerDB {
 		conn = getconn.getConection();
 		Calendar post_date;
 		int x = 0;
-		post_price = 0;
-		post_visible = 0;
 		boolean panduan = false;
 		
 		try{
@@ -74,7 +71,7 @@ public class PostSerDB {
 			pst.setInt(7, post_price);
 			pst.setString(8,date.format(post_date.getTime()));
 			pst.setLong(9, post_id);
-			x = pst.executeUpdate();
+			x = pst.executeUpdate();	
 			conn.close();
 			panduan = true;
 		}catch(SQLException e){
@@ -115,9 +112,9 @@ public class PostSerDB {
 		boolean panduan = false;
 		
 		try{
-			String sql_delect = "delete from homework.collection where post_id="+post_id;
+			String sql_delect = "delete from homework.post where post_id="+post_id;
 			st = (Statement) conn.createStatement();
-			rs = st.executeQuery(sql_delect);
+			int x = st.executeUpdate(sql_delect);
 			conn.close();
 			panduan = true;
 		}catch(SQLException e){
@@ -428,4 +425,5 @@ public class PostSerDB {
 		return zan;
 	}
 	
+
 }

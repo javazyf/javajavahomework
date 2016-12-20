@@ -5,21 +5,22 @@
  */
 package my.contacteditor;
 
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 import db.UserSerDB;
 public class Deposit extends javax.swing.JFrame {
 	Long deposit_id;
 	int deposit_num;
     long user_id;
     public Deposit(long user_id) {
-        initComponents();
+      
         this.user_id=user_id;
-    }
-    @SuppressWarnings("unchecked")
-    private void initComponents() {
-
+  
         jLabel3 = new javax.swing.JLabel();
         nicheng = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JLabel();
         jine = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         queding = new javax.swing.JButton();
@@ -30,21 +31,12 @@ public class Deposit extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("金币充值");
 
-        nicheng.setText("用户昵称");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
+        nicheng.setText("");
+      
+        jTextField1.setText("");
         jine.setText("充值金额");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
+ 
 
         queding.setText("确定");
        
@@ -110,26 +102,24 @@ public class Deposit extends javax.swing.JFrame {
 		setLocationRelativeTo(null);
     }
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
-    	String a= jTextField1.getText();
-    }
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
-    	 String b = jTextField2.getText();//获得充值金额
-         deposit_num=Integer.valueOf(b).intValue();      
-    }
-
     private void jLabel5AncestorAdded(javax.swing.event.AncestorEvent evt) {
          setDefaultCloseOperation(Deposit.DISPOSE_ON_CLOSE); 
     }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    	 String b = jTextField2.getText();//获得充值金额
+         deposit_num=Integer.valueOf(b).intValue();   
     	UserSerDB userser = new UserSerDB();
-     	userser.recharge(user_id,deposit_num);}   //输入用户ID，用户金额，调用recharge(),充值成功
+     	userser.recharge(user_id,deposit_num);
+     	JOptionPane.showMessageDialog(null, "充值成功！");
+     	setVisible(false);
+     	}   //输入用户ID，用户金额，调用recharge(),充值成功
+    
     private javax.swing.JButton queding;
     private javax.swing.JLabel nicheng;
     private javax.swing.JLabel jine;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jTextField1;
     private javax.swing.JTextField jTextField2;
 }

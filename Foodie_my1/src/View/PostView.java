@@ -123,6 +123,8 @@ public class PostView extends javax.swing.JFrame {
         //image[0].setIcon(new ImageIcon("Í·Ïñ2.jpg"));
         //image[0].setText("Í·Ïñ2");
         //image[0].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        System.out.println(new UserSerDB().getinfo(writer_id).get(1).toString());
         System.out.println(name[0]);
         name[0] = new JLabel();
         name[0].setText(new UserSerDB().getinfo(writer_id).get(1).toString());

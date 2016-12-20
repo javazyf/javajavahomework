@@ -17,7 +17,7 @@ import db.*;
 
 public class Post_page4 extends javax.swing.JFrame {
 	
-	private int progress1=4;
+	private int progress1=4;//步骤4
 	
 	private static final long serialVersionUID = 1L;
     private javax.swing.JToggleButton cancel1;
@@ -58,13 +58,13 @@ public class Post_page4 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        p1.setText("绗�"+progress1+"姝�");
+        p1.setText("第"+progress1+"步");
 
-        txt1.setText("璇疯緭鍏ユ枃瀛楋細");
+        txt1.setText("请输入内容");
 
-        img1.setText("璇蜂笂浼犲浘鐗�");
+        img1.setText("请上传图片");
 
-        img_upload1.setText("涓婁紶");
+        img_upload1.setText("上传");
         img_upload1.addActionListener(new java.awt.event.ActionListener() {
         	//上传
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +76,7 @@ public class Post_page4 extends javax.swing.JFrame {
         txt_input1.setRows(5);
         jScrollPane1.setViewportView(txt_input1);
       
+        //页面布局
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,39 +117,39 @@ public class Post_page4 extends javax.swing.JFrame {
                         .addGap(41, 41, 41))))
         );
 
-        cancel1.setText("鍙栨秷");
+        cancel1.setText("取消");
         cancel1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancel1ActionPerformed(evt);
             }
         });
 
-        previous1.setText("涓婁竴姝�");
+        previous1.setText("上一步");
         previous1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	try {
 					previous1ActionPerformed(evt);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
             }
         });
 
-        next1.setText("涓嬩竴姝�");
+        next1.setText("下一步");
         next1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 next1ActionPerformed(evt);
             }
         });
 
-        issue1.setText("鍙戝竷");
+        issue1.setText("发布");
         issue1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 issue1ActionPerformed(evt);
             }
         });
 
+        //页面布局
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -195,44 +196,44 @@ public class Post_page4 extends javax.swing.JFrame {
     }
     
     private void img_upload1ActionPerformed(java.awt.event.ActionEvent evt) {
-        //鍙栨秷鐩戝惉
+        //图片上传监听
     	Object[] obj2 = { "green","orange","red","yellow"};
     	image=(String) JOptionPane.showInputDialog(null,"请选择想上传的图片\n","图片",
     			JOptionPane.PLAIN_MESSAGE,new ImageIcon("green.jpg"),obj2,"green");
     }
     
     private void cancel1ActionPerformed(java.awt.event.ActionEvent evt) {
-        //鍙栨秷
+        //“取消”按钮监听事件
     	PostSerDB pid = new PostSerDB();
     	pid.delpost(post_nowid);
     	setVisible(false);
     }
     
     private void previous1ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
-		//杩斿洖涓婁竴姝�
+		//“上一步”按钮监听
     	setVisible(false);
     	Post_page3 p_p1=new Post_page3(post_nowid,post_wrid);
     	p_p1.setVisible(true);
     }
     
     private void next1ActionPerformed(java.awt.event.ActionEvent evt) {
-    	//
+    	//“下一步”按钮监听
     	PostSerDB pid = new PostSerDB();  	
-    	String txt=txt_input1.getText();
+    	String txt=txt_input1.getText();//获取文本
     	
-    	pid.post_progress(post_nowid,progress1,txt,image);
+    	pid.post_progress(post_nowid,progress1,txt,image);//上传数据至数据库
     	
     	setVisible(false);
-    	Post_page5 p_p1=new Post_page5(post_nowid,post_wrid);
+    	Post_page5 p_p1=new Post_page5(post_nowid,post_wrid);//进入下一步
     	p_p1.setVisible(true);
     }
     
     private void issue1ActionPerformed(java.awt.event.ActionEvent evt) {
-        //
+        //“发布”按钮监听
     	PostSerDB pid = new PostSerDB(); 	
-    	String txt=txt_input1.getText();
+    	String txt=txt_input1.getText();//获取文本
     	
-    	pid.post_progress(post_nowid,progress1,txt,image);
+    	pid.post_progress(post_nowid,progress1,txt,image);//上传数据至数据库
     	setVisible(false);
     }
     

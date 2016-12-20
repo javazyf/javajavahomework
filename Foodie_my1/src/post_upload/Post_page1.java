@@ -1,16 +1,7 @@
 package post_upload;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import View.*;
 
-import db.*;
-
-import java.util.Scanner;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -18,21 +9,21 @@ import db.PostSerDB;
 
 public class Post_page1 extends javax.swing.JFrame {
 	
-	private int progress1=1;//褰撳墠鍙戝笘姝ラ
+	private int progress1=1;//步骤
 	
 	private static final long serialVersionUID = 1L;
-    private javax.swing.JToggleButton cancel1;//鍙栨秷鎸夐挳
+    private javax.swing.JToggleButton cancel1;//取消
     private javax.swing.JLabel img1;
-    private javax.swing.JButton img_upload1;//鍥剧墖涓婁紶鎸夐挳
-    private javax.swing.JButton issue1;//鍙戝竷鎸夐挳
+    private javax.swing.JButton img_upload1;//图片上传
+    private javax.swing.JButton issue1;//发布
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton next1;//涓嬩竴姝ユ寜閽�
+    private javax.swing.JButton next1;//下一步
     private javax.swing.JLabel p1;
-    private javax.swing.JButton previous1;//涓婁竴姝ユ寜閽�
+    private javax.swing.JButton previous1;//上一步
     private javax.swing.JLabel txt1;
-    private javax.swing.JTextArea txt_input1;//鏂囨湰杈撳叆
+    private javax.swing.JTextArea txt_input1;//文本输入
     
     private String image =null;
  
@@ -54,31 +45,31 @@ public class Post_page1 extends javax.swing.JFrame {
         next1 = new javax.swing.JButton();
         issue1 = new javax.swing.JButton();
         
-        this.post_nowid = post_id;//褰撳墠甯栧瓙ID浼犻��
+        this.post_nowid = post_id;//帖子ID
         this.post_wrid=user_id;
-        this.setLocation(450,150);//椤甸潰璁剧疆
+        this.setLocation(450,150);//设置位置
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        p1.setText("绗�"+progress1+"姝�");
+        p1.setText("第"+progress1+"步");
 
-        txt1.setText("璇疯緭鍏ユ枃瀛楋細");
+        txt1.setText("请输入内容");
 
-        img1.setText("璇蜂笂浼犲浘鐗�");
+        img1.setText("请上传图片");
 
-        img_upload1.setText("涓婁紶");
+        img_upload1.setText("上传");
         img_upload1.addActionListener(new java.awt.event.ActionListener() {
-        	//上传
+        	//设置上传监听事件
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	img_upload1ActionPerformed(evt);
             }
         });
 
-        txt_input1.setColumns(20);//鏂囨湰妗嗗ぇ灏�
+        txt_input1.setColumns(20);//文本框设置
         txt_input1.setRows(5);
         jScrollPane1.setViewportView(txt_input1);
      
-        //椤甸潰甯冨眬
+        //页面布局
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -119,17 +110,17 @@ public class Post_page1 extends javax.swing.JFrame {
                         .addGap(41, 41, 41))))
         );
 
-        cancel1.setText("鍙栨秷");
+        cancel1.setText("取消");
         cancel1.addActionListener(new java.awt.event.ActionListener() {
-        	//璁剧疆鍙栨秷鐩戝惉浜嬩欢
+        	//设置上取消监听事件
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancel1ActionPerformed(evt);
             }
         });
 
-        previous1.setText("涓婁竴姝�");
+        previous1.setText("上一步");
         previous1.addActionListener(new java.awt.event.ActionListener() {
-        	//璁剧疆涓婁竴姝ョ洃鍚簨浠�
+        	//设置上一步监听事件
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	try {
 					previous1ActionPerformed(evt);
@@ -140,23 +131,23 @@ public class Post_page1 extends javax.swing.JFrame {
             }
         });
 
-        next1.setText("涓嬩竴姝�");
+        next1.setText("下一步");
         next1.addActionListener(new java.awt.event.ActionListener() {
-        	//璁剧疆涓嬩竴姝ョ洃鍚簨浠�
+        	//设置下一步监听事件
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 next1ActionPerformed(evt);
             }
         });
 
-        issue1.setText("鍙戝竷");
+        issue1.setText("发布");
         issue1.addActionListener(new java.awt.event.ActionListener() {
-        	//璁剧疆鍙戝竷鐩戝惉浜嬩欢
+        	//设置发布监听事件
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 issue1ActionPerformed(evt);
             }
         });
 
-        //椤甸潰甯冨眬
+        //页面布局
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -203,45 +194,45 @@ public class Post_page1 extends javax.swing.JFrame {
     }
     
     private void cancel1ActionPerformed(java.awt.event.ActionEvent evt) {
-        //鍙栨秷鐩戝惉
+        //取消监听
     	PostSerDB pid = new PostSerDB();
     	pid.delpost(post_nowid);
     	setVisible(false);
     }
     
     private void img_upload1ActionPerformed(java.awt.event.ActionEvent evt) {
-        //鍙栨秷鐩戝惉
+        //图片上传监听
     	Object[] obj2 = { "green","orange","red","yellow"};
     	image=(String) JOptionPane.showInputDialog(null,"请选择想上传的图片\n","图片",
     			JOptionPane.PLAIN_MESSAGE,new ImageIcon("green.jpg"),obj2,"green");
     }
     
     private void previous1ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
-		//杩斿洖涓婁竴姝ョ洃鍚�
+		//上一步监听
     	setVisible(false);
     	Post_other p_o=new Post_other(post_wrid);
     	p_o.setVisible(true);
     }
     
     private void next1ActionPerformed(java.awt.event.ActionEvent evt) {
-    	//涓嬩竴姝ョ洃鍚�
+    	//下一步监听
     	PostSerDB pid = new PostSerDB();  	
-    	String txt=txt_input1.getText();//鑾峰彇绗竴姝ユ枃鏈�
+    	String txt=txt_input1.getText();//获取文本
  
-    	pid.post_progress(post_nowid,progress1,txt,image);//璋冪敤post_head()锛屽悜鏁版嵁搴撲紶杈撴暟鎹�
+    	pid.post_progress(post_nowid,progress1,txt,image);//调用post_head()，上传数据到数据库
     	
     	setVisible(false);
-    	Post_page2 p_p1=new Post_page2(post_nowid,post_wrid);////璋冪敤Post_page2锛岃繘鍏ョ浜屾
+    	Post_page2 p_p1=new Post_page2(post_nowid,post_wrid);////调用Post_page2，进入下一步
     	p_p1.setVisible(true);
     }
     
     private void issue1ActionPerformed(java.awt.event.ActionEvent evt) {
-        //
+        //发布监听
     	PostSerDB pid = new PostSerDB();  	
-    	String txt=txt_input1.getText();//鑾峰彇绗竴姝ユ枃鏈�
+    	String txt=txt_input1.getText();//获取文本
     	
-    	pid.post_progress(post_nowid,progress1,txt,image);//璋冪敤post_head()锛屽悜鏁版嵁搴撲紶杈撴暟鎹�
-    	setVisible(false);//宸插彂甯冿紝閫�鍑哄彂甯冪晫闈�
+    	pid.post_progress(post_nowid,progress1,txt,image);//调用post_head()，上传数据到数据库
+    	setVisible(false);//当前页面不可见
     }
 }
     
