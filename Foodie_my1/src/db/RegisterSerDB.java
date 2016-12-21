@@ -25,6 +25,7 @@ public class RegisterSerDB {
 	
 	public boolean insert(String account,long password,String name,boolean sex,String birth,String tel,String mail){
 		conn = getconn.getConection();
+		boolean qiandao = false;
 		
 		boolean panduan = false;
 		try{
@@ -45,10 +46,9 @@ public class RegisterSerDB {
 				i = i + 1;
 			}
 			long id_temp = 20160000 + i;
-			String sql_insert = "insert into homework.user(user_id,user_account,"
-					+ "user_password,user_name,user_sex,user_birth,user_tel,user_mail,user_purse,user_root) values ('"+
-			id_temp+"','"+account+"','"+password+"','"+
-			name+"','"+sex+"','"+birth+"','"+tel+"','"+mail+"','"+purse+"','"+root+"')";
+			String sql_insert = "insert into homework.user(user_id,user_account,user_password,user_name,user_sex,user_birth,user_tel,user_mail,"
+					+ "user_purse,user_root,user_qiandao) values ('"+id_temp+"','"+account+"','"+password+"','"+name+"','"+sex+"','"+
+					birth+"','"+tel+"','"+mail+"','"+purse+"','"+root+"','"+qiandao+"')";
 			int count = st.executeUpdate(sql_insert);
 			System.out.println("Insert " + count +" records into departments table");
 			conn.close();
