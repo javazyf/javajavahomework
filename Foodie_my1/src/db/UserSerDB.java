@@ -22,8 +22,7 @@ public class UserSerDB {
 	GetConnection getconn = new GetConnection();
 	
 	//获取用户所有信息
-	public ArrayList getinfo(long user_id){//获取用户所有信息，储存顺序，用户id，账号，密码，姓名，性别，生日，电话，邮箱
-		//钱包，权限
+	public ArrayList getinfo(long user_id){//获取用户所有信息，储存顺序，用户id，账号，密码，姓名，性别，生日，电话，邮箱，钱包，权限，签到状态
 		conn = getconn.getConection();
 		ArrayList info = new ArrayList();
 		
@@ -33,7 +32,7 @@ public class UserSerDB {
 			rs = st.executeQuery(sql_search);
 			int i = 0;
 			while(rs.next()){
-				while(i<=9){
+				while(i<=10){
 				info.add(rs.getString(i+1));
 				i = i + 1;
 				}
@@ -241,6 +240,7 @@ public class UserSerDB {
 		conn = getconn.getConection();
 		boolean panduan = false;
 		int charge = 0;
+		boolean qiandao = true;
 		
 		try{
 			String sql_query = "select user_purse from homework.user where user_id="+user_id;
@@ -249,7 +249,7 @@ public class UserSerDB {
 			while(rs.next()){
 				charge = rs.getInt(1) + 1;
 			}
-			String sql_update = "update user set user_purse="+charge+" where user_id="+user_id;
+			String sql_update = "update user set user_purse="+charge+",user_qiandao ="+qiandao+" where user_id="+user_id;
 			st = (Statement) conn.createStatement();
 			int rst = st.executeUpdate(sql_update);
 			conn.close();
