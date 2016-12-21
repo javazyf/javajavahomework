@@ -26,7 +26,7 @@ public class Docuement extends javax.swing.JFrame {
 	        save_post = new javax.swing.JLabel();
 	        Search = new javax.swing.JLabel();
 	        Username = new javax.swing.JLabel();
-	        Logout = new javax.swing.JButton();
+	        Logout = new javax.swing.JLabel();
 	        PostList = new javax.swing.JScrollPane();
 	        PostBody = new javax.swing.JPanel();
 	        this.user_id=user_id;
@@ -46,10 +46,15 @@ public class Docuement extends javax.swing.JFrame {
 	        Search.setText("");
 	       
 	        Username.setText("");
-	        Logout.setText("·µ»Ø");
-	        Logout.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	            	LogoutActionPerformed(evt);
+
+	        Logout.setText("");
+	        Logout.addAncestorListener(new javax.swing.event.AncestorListener() {
+	            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+	            }
+	            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+	                LogoutAncestorAdded(evt);
+	            }
+	            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
 	            }
 	        });
 	        javax.swing.GroupLayout UpperLayout = new javax.swing.GroupLayout(Upper);
@@ -217,13 +222,14 @@ public class Docuement extends javax.swing.JFrame {
 	        setResizable(false);
 			setLocationRelativeTo(null);
 	    }
-	    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {
-	        Docuement.this.setVisible(false);
-	        new MyGold(user_id).setVisible(true);  
-	     }
+	  
+	    private void LogoutAncestorAdded(javax.swing.event.AncestorEvent evt) {
+	        setDefaultCloseOperation(Docuement.DISPOSE_ON_CLOSE);        
+	       }
+	   
 
 	 
-	    private JButton Logout;
+	    private JLabel Logout;
 	    private JLabel New_Post;
 
 	    private JPanel post[]=new JPanel[100];

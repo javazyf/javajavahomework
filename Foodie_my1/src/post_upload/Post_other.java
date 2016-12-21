@@ -18,35 +18,35 @@ public class Post_other extends javax.swing.JFrame {
     private static int post_tag1,post_tag2,post_tag3;
 	
     private BackGroundJPanel jPanel1;
-    private javax.swing.JToggleButton cancel;//取消
-    private javax.swing.JButton next;//下一步
+    private javax.swing.JToggleButton cancel;//鍙栨秷鎸夐挳
+    private javax.swing.JButton next;//涓嬩竴姝ユ寜閽�
     private javax.swing.JLabel price;
-    private javax.swing.JTextField price_input;//输入价格
+    private javax.swing.JTextField price_input;//浠锋牸杈撳叆
     private javax.swing.JLabel tag;
-    private javax.swing.JComboBox<String> tag1;//获取tag1
-    private javax.swing.JComboBox<String> tag2;//获取tag2
-    private javax.swing.JComboBox<String> tag3;//获取tag3
+    private javax.swing.JComboBox<String> tag1;//涓嬫媺妗嗛�夋嫨tag1
+    private javax.swing.JComboBox<String> tag2;//涓嬫媺妗嗛�夋嫨tag2
+    private javax.swing.JComboBox<String> tag3;//涓嬫媺妗嗛�夋嫨tag3
     private javax.swing.JLabel title;
-    private javax.swing.JTextField title_input;//输入标题
+    private javax.swing.JTextField title_input;//鏍囬杈撳叆
     private javax.swing.JLabel visibility;
-    private javax.swing.JComboBox<String> visible;//选择可见性
+    private javax.swing.JComboBox<String> visible;//涓嬫媺妗嗛�夋嫨鍙鎬�
     long post_wrid;
+
     
     public String[] tag_input() throws IOException{
-    	//读入tag
-    Map<String,String> maptag=new HashMap<String,String>();//设置mapping
-    FileReader fr = new FileReader("tag.csv");//CSV文件
+    	//鑾峰彇tag锛岃繑鍥濻tring[]鏁扮粍
+    Map<String,String> maptag=new HashMap<String,String>();//寤虹珛mapping
+    FileReader fr = new FileReader("tag.csv");//璇诲彇tag鐨刢sv鏂囦欢
     BufferedReader br = new BufferedReader(fr);
     String  lineStr;
-    while((lineStr = br.readLine()) != null) {
-    	//读取key-value映射
+    while((lineStr = br.readLine()) != null) {//浣縯ag鍜屽搴旀暟鍒嗗紑
     	 String arr[]= lineStr.split(",");
     	 maptag.put(arr[0],arr[1]);
     }
 	br.close();
 	String taginputvalue[] = new String[20]; 
 	for(int i=0;i<20;i++){
-		//String[] 存取tag
+		//String[] 鏁扮粍鍌ㄥ瓨tag
 		String taginputkey=String.valueOf(i+1);
 		taginputvalue[i]=maptag.get(taginputkey);
 	}
@@ -69,46 +69,46 @@ public class Post_other extends javax.swing.JFrame {
         tag3 = new javax.swing.JComboBox<>();
         tag = new javax.swing.JLabel();
         
-        this.post_wrid=user_id;//接收用户ID
+        this.post_wrid=user_id;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
-        cancel.setText("取消");
+        cancel.setText("鍙栨秷");
         cancel.addActionListener(new java.awt.event.ActionListener() {
-        	//设置取消监听事件
+        	//璁剧疆鍙栨秷鐩戝惉浜嬩欢
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	cancelActionPerformed(evt);
             }
         });
 
-        next.setText("下一步");
+        next.setText("涓嬩竴姝�");
         next.addActionListener(new java.awt.event.ActionListener() {
-        	//设置下一步监听事件
+        	//璁剧疆涓嬩竴姝ョ洃鍚簨浠�
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	nextActionPerformed(evt);
             }
         });
 
-        title.setText("标题（1--20字）");
+        title.setText("鏍囬锛�1--20瀛楋級");
 
-        visible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "公开", "仅朋友可见", "仅自己可见" }));
+        visible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "鍏紑", "浠呭ソ鍙嬪彲瑙�", "浠呰嚜宸卞彲瑙�" }));
         visible.addActionListener(new java.awt.event.ActionListener() {
-        	//设置可见性监听事件
+        	//璁剧疆鍙鎬х洃鍚簨浠�
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	visibleActionPerformed(evt);
             }
         });
 
-        visibility.setText("发布范围");
+        visibility.setText("鍏紑鑼冨洿锛�");
 
-        price.setText("金额（请输入正整数）");
+        price.setText("閲戦锛堝彧鑳借緭鍏ユ暣鏁帮級锛�");
 
-        price_input.setText("0");//默认金额为0
+        price_input.setText("0");//浠锋牸榛樿鍊间负0
         
-        String[] tag_input1 = tag_input();//调用 tag_input()，获取tag列表
+        String[] tag_input1 = tag_input();//璋冪敤tag鑾峰彇鏂规硶
         tag1.setModel(new javax.swing.DefaultComboBoxModel<>(tag_input1));
         tag1.addActionListener(new java.awt.event.ActionListener() {
-        	//设置tag1监听事件
+        	//璁剧疆tag1鐩戝惉浜嬩欢
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
 					tag1ActionPerformed(evt);
@@ -121,7 +121,7 @@ public class Post_other extends javax.swing.JFrame {
 
         tag2.setModel(new javax.swing.DefaultComboBoxModel<>(tag_input1));
         tag2.addActionListener(new java.awt.event.ActionListener() {
-        	//设置tag2监听事件
+        	//璁剧疆tag2鐩戝惉浜嬩欢
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
 					tag2ActionPerformed(evt);
@@ -134,7 +134,7 @@ public class Post_other extends javax.swing.JFrame {
 
         tag3.setModel(new javax.swing.DefaultComboBoxModel<>(tag_input1));
         tag3.addActionListener(new java.awt.event.ActionListener() {
-        	//设置tag3监听事件
+        	//璁剧疆tag3鐩戝惉浜嬩欢
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
 					tag3ActionPerformed(evt);
@@ -145,9 +145,9 @@ public class Post_other extends javax.swing.JFrame {
             }
         });
 
-        tag.setText("标签");
+        tag.setText("鏍囩锛�");
 
-        //页面布局
+        //椤甸潰甯冨眬
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -228,30 +228,30 @@ public class Post_other extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         
-        this.setLocation(350,150);  //设置初始位置
-        pack();
+        this.setLocation(350,150);  //璁剧疆鍒濆浣嶇疆  
+        pack();//鑷姩璋冩暣椤甸潰澶у皬 
         setResizable(false);
 		setLocationRelativeTo(null);
     }
 
 	public void visibleActionPerformed(java.awt.event.ActionEvent e) {                                         
-        //可见性监听
-    	if(e.getSource()=="公开"){
-    		//默认值为0
+        // 鍙鎬х洃鍚�
+    	if(e.getSource()=="鍏紑"){
+    		//榛樿涓哄叕寮�锛屾槧灏勭殑榛樿鍊间负0
     		visibile1=0;
     	}
-    	else if(e.getSource()=="仅朋友可见"){
-    		//仅朋友可见为1
+    	else if(e.getSource()=="浠呭ソ鍙嬪彲瑙�"){
+    		//浠呭ソ鍙嬪彲瑙侊紝鏄犲皠鍊间负1
     		visibile1=1;
     	}
-    	else if(e.getSource()=="仅自己可见"){
-    		//仅自己可见为2
+    	else if(e.getSource()=="浠呰嚜宸卞彲瑙�"){
+    		//浠呰嚜宸卞彲瑙侊紝鏄犲皠鍊间负2
     		visibile1=2;
     	}
     }
       
     public void tag1ActionPerformed(java.awt.event.ActionEvent e) throws IOException {                                     
-        //tag1监听
+        //tag1鐩戝惉
     	int i;
     	String[] tag_input2 = tag_input();
     	for(i=0;i<20;i++){
@@ -262,7 +262,7 @@ public class Post_other extends javax.swing.JFrame {
     }  
     
     public void tag2ActionPerformed(java.awt.event.ActionEvent e) throws IOException {                                     
-        //tag2监听
+        //tag2鐩戝惉
     	int i;
     	String[] tag_input2 = tag_input();
     	for(i=0;i<20;i++){
@@ -273,7 +273,7 @@ public class Post_other extends javax.swing.JFrame {
     } 
     
     public void tag3ActionPerformed(java.awt.event.ActionEvent e) throws IOException {                                     
-        //tag3监听
+        //tag3鐩戝惉
     	int i;
     	String[] tag_input2 = tag_input();
     	for(i=0;i<20;i++){
@@ -284,44 +284,44 @@ public class Post_other extends javax.swing.JFrame {
     } 
     
     public void cancelActionPerformed(java.awt.event.ActionEvent evt) {
-        //取消监听
+        //鍙栨秷鐩戝惉
     	PostSerDB p_head=new PostSerDB();
     	long post_nowid=p_head.post();
-//    	p_head.delpost(post_nowid);//调用数据库delpost()，删除帖子
+//    	p_head.delpost(post_nowid);//璋冪敤褰撳墠甯栧瓙ID锛屽垹闄ゆ暟鎹簱涓殑甯栧瓙
     	setVisible(false);
     }
     
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {                                     
-        //下一步监听
+        //涓嬩竴姝ョ洃鍚�
     	PostSerDB p_head=new PostSerDB();
-    	long post_nowid=p_head.post();//分配当前帖子ID
+    	long post_nowid=p_head.post();//绯荤粺鑷姩鍒嗛厤褰撳墠甯栧瓙ID
     	
-    	String post_title=title_input.getText();//获取标题
+    	String post_title=title_input.getText();//鑾峰彇鏍囬
+    	
     	int post_price = 0;
-    	String post_pr=price_input.getText();//获取价格
-    	int post_pr1=Integer.parseInt(post_pr);//价格转为int型
-    	System.out.println(post_nowid);
-    	System.out.println(post_wrid);
+    	String post_pr=price_input.getText();//鑾峰彇浠锋牸
+    	int post_pr1=Integer.parseInt(post_pr);
+    	
     	if(post_title.equals("")){
-    		//标题不能为0
-    		JOptionPane.showMessageDialog(null, "标题不能为0！"); 
+    		//鏍囬涓嶈兘涓虹┖
+    		JOptionPane.showMessageDialog(null, "璇疯緭鍏ユ爣棰橈紒"); 
     	}
     	else if(post_title.length()>20){
-    		//标题字数不能超过20字
-    		JOptionPane.showMessageDialog(null, "标题字数不能超过20字！");
+    		//鏍囬涓嶈兘瓒呰繃20瀛�
+    		JOptionPane.showMessageDialog(null, "鏍囬涓嶈兘瓒呰繃20瀛楋紒");
     	}
     	else{
         	if(post_pr1>=0){
         		post_price=post_pr1;
         		p_head.post_head(post_nowid,post_wrid,post_title,post_tag1,post_tag2,post_tag3,visibile1,post_price);
-        		//调用post_head()，传送当前数据到数据库
-        		setVisible(false);//当前页面不可见
-        		Post_page1 p_p1 = new Post_page1(post_nowid,post_wrid);//调用Post_page1，进入发帖内容第一步
-        		p_p1.setVisible(true);//第一步可见
+        		//璋冪敤post_head()锛屽悜鏁版嵁搴撲紶杈撴暟鎹�
+        		setVisible(false);//褰撳墠椤甸潰闅愯棌
+        		Post_page1 p_p1 = new Post_page1(post_nowid,post_wrid);//璋冪敤Post_page1锛岃繘鍏ヤ笅涓�姝�
+        		p_p1.setVisible(true);//鍙戝笘姝ｅ紡绗竴姝ュ彲瑙�
         	}
         	else{
-        		//价格小于0或者输入除数字以外的字符
-        		JOptionPane.showMessageDialog(null, "请输入正确的金额！");
+        		//浠锋牸涓嶈兘灏忎簬0
+        		JOptionPane.showMessageDialog(null, "璇疯緭鍏ユ纭殑閲戦锛�");
         	}
     	}
     }                                    

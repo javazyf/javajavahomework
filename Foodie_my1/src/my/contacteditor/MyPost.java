@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -136,16 +135,15 @@ public class MyPost extends javax.swing.JFrame {
 	      
 	        jLable[b[i]].setText("");
 	        jButton[b[i]][0].setText("查看");
-	        final long s=b[i];
 	        jButton[b[i]][0].addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                jButton25ActionPerformed(evt,s);
+	                jButton25ActionPerformed(evt);
 	            }
 	        });
 	        jButton[b[i]][1].setText("删除");
 	        jButton[b[i]][1].addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                jButton24ActionPerformed(evt,s);
+	                jButton24ActionPerformed(evt);
 	            }
 	        });
 	        javax.swing.GroupLayout Post1Layout = new javax.swing.GroupLayout(post[b[i]]);
@@ -212,7 +210,7 @@ public class MyPost extends javax.swing.JFrame {
 			setLocationRelativeTo(null);
 	    }
 
-	    
+	  
 	    private void jLabel2AncestorAdded(javax.swing.event.AncestorEvent evt) {
 	        setDefaultCloseOperation(ActionSuccess.DISPOSE_ON_CLOSE);       
 	       }
@@ -222,24 +220,14 @@ public class MyPost extends javax.swing.JFrame {
 	        new PersonalHpmepage(user_id).setVisible(true);  
 	     }
 
-	    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt,long i) {
-	    	long c=0;  
-	    	PostSerDB postser= new PostSerDB();
-	    	c=i;
+
+	   
+	    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {  
 	    	PostSerDB postserdb= new PostSerDB();  //输入帖子ID，删除用户所发布的帖子
-	    	long postser_id=postserdb.getwriterid(c);
-	    	System.out.println(postserdb.getwriterid(c));
-	    	if(user_id==postser_id){
-	    		postserdb.delpost(c);
-	    	}
-	    	JOptionPane.showMessageDialog(null, "删除成功");
+	    	postserdb.delpost(b);
 	    } 
-	    
-	    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt,long i) {
-	    	long c=0;  
-	    	PostSerDB postser= new PostSerDB();
-	    	c=i;
-	    	PostView postView=new PostView(user_id,c);  //输入用户ID，帖子ID，打开帖子界面，查看该帖子
+	    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {
+	    	PostView postView=new PostView(user_id,b);  //输入用户ID，帖子ID，打开帖子界面，查看该帖子
 	        postView.setVisible(true);
 	    } 
 	    	

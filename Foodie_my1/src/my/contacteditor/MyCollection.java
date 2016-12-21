@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -115,7 +114,6 @@ public class MyCollection extends javax.swing.JFrame {
 	        
 	        int b[] = new int[100]; 
 	        b[i]= Integer.valueOf(a.get(i).toString());
-	        
 	        post[b[i]]=new JPanel();
 	        post[b[i]].setMaximumSize(new java.awt.Dimension(1000, 32767));
 	        post[b[i]].setMinimumSize(new java.awt.Dimension(1000, 0));
@@ -134,17 +132,15 @@ public class MyCollection extends javax.swing.JFrame {
 	      
 	        jLable[b[i]].setText("");
 	        jButton[b[i]][0].setText("查看");
-	        final int s=b[i];
 	        jButton[b[i]][0].addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                jButton25ActionPerformed(evt,s);
+	                jButton25ActionPerformed(evt);
 	            }
 	        });
 	        jButton[b[i]][1].setText("删除");
-	        
 	        jButton[b[i]][1].addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                jButton24ActionPerformed(evt,s);
+	                jButton24ActionPerformed(evt);
 	            }
 	        });
 	        
@@ -217,18 +213,13 @@ public class MyCollection extends javax.swing.JFrame {
 	        MyCollection.this.setVisible(false);
 	        new PersonalHpmepage(user_id).setVisible(true);  
 	     }
-	    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt,int i) {
-	    	long c=0;  
-	    	PostSerDB postser= new PostSerDB();
-	    	c=i;
-	        postser.delcollection(user_id,c); //调用delcollection方法，输入use_id,帖子ID，删除用户收藏的该帖子
-	        JOptionPane.showMessageDialog(null, "取消收藏成功！");
+	    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {
+	   
+	    	PostSerDB postserdb= new PostSerDB();
+	    	postserdb.delcollection(user_id,b);//调用delcollection方法，输入use_id,帖子ID，删除用户收藏的该帖子
 	    } 
-	    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt,int i) {
-	    	long c=0;  
-	    	PostSerDB postser= new PostSerDB();
-	    	c=i;
-	    	PostView postView=new PostView(user_id,c);   //输入use_id和帖子ID，打开帖子界面，查看该帖子
+	    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {
+	    	PostView postView=new PostView(user_id,b);   //输入use_id和帖子ID，打开帖子界面，查看该帖子
 	        postView.setVisible(true);
 	    } 
 	   
@@ -254,17 +245,4 @@ public class MyCollection extends javax.swing.JFrame {
 	    private JLabel save_post;
 	    
 		PostSerDB posterSerDB=new PostSerDB();
-
-
-//		public static void main(String args[]){
-//			long user = 20160003;
-//			int post = 2;
-//			MyCollection mc = new MyCollection(user);
-//			mc.setVisible(true);
-//			PostSerDB postserdb= new PostSerDB();
-//	    	postserdb.delcollection(user,post);
-//	    	JOptionPane.showMessageDialog(null, "取消成功！");
-//	    	MyCollection mc1 = new MyCollection(user);
-//			mc1.setVisible(true);
-//		}
-}
+	}

@@ -137,16 +137,15 @@ public class MyPurchase extends javax.swing.JFrame {
 	       
 	        jLable[b[i]].setText(writer_name.get(3).toString());
 	        jButton[b[i]][0].setText("查看");
-	        final int s=b[i];
 	        jButton[b[i]][0].addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                jButton25ActionPerformed(evt,s);
+	                jButton25ActionPerformed(evt);
 	            }
 	        });
 	        jButton[b[i]][1].setText("收藏");
 	        jButton[b[i]][1].addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                jButton24ActionPerformed(evt,s);
+	                jButton24ActionPerformed(evt);
 	            }
 	        });
 	        javax.swing.GroupLayout Post1Layout = new javax.swing.GroupLayout(post[b[i]]);
@@ -215,26 +214,22 @@ public class MyPurchase extends javax.swing.JFrame {
 	        new PersonalHpmepage(user_id).setVisible(true);  
 	     }
 	   
-	    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt,int i) { 
+	    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) { 
 	    	long c=0;     
-	    	String str = jButton[i][1].getText();   //收藏帖子
+	        
+	    	String str = jButton[b][1].getText();   //收藏帖子
 	        if (str.equals("收藏")){
-	        	jButton[i][1].setText("已收藏");
-	        	c=i;
+	        	jButton[b][1].setText("已收藏");
+	        	c=b;
 	        	posterSerDB.collection(user_id,c); 
 	        }
 	        else{
-	        	jButton[i][1].setText("收藏");
+	        	jButton[b][1].setText("收藏");
 	        	posterSerDB.delcollection(user_id,c); 
-	        	System.out.println(posterSerDB.collection(user_id,c));
 	        }
 	    } 
-	    
-	    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt,int i) {
-	    	long c=0;  
-	    	PostSerDB postser= new PostSerDB();
-	    	c=i;
-	    	PostView postView=new PostView(user_id,i);  //查看帖子界面
+	    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {
+	    	PostView postView=new PostView(user_id,b);  //查看帖子界面
 	        postView.setVisible(true);
 	    } 
 	    	
