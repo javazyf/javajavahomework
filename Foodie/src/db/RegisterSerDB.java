@@ -26,8 +26,8 @@ public class RegisterSerDB {
 	public boolean insert(String account,long password,String name,boolean sex,String birth,String tel,String mail){
 		conn = getconn.getConection();
 		boolean qiandao = false;
-		
 		boolean panduan = false;
+		
 		try{
 			String sql_check = "select user_account from homework.user";
 			st = (Statement) conn.createStatement();

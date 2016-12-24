@@ -110,11 +110,19 @@ public class PostSerDB {
 	public boolean delpost(long post_id){//删除帖子
 		conn = getconn.getConection();
 		boolean panduan = false;
+		int count = 0;
 		
 		try{
 			String sql_delect = "delete from homework.post where post_id="+post_id;
 			st = (Statement) conn.createStatement();
 			int x = st.executeUpdate(sql_delect);
+			String sql_search = "select * from homework.post";
+			rs = st.executeQuery(sql_search);
+			while(rs.next()){
+				count = count + 1;
+				String sql_update = "update homework.post set post_id="+count;
+				int y = st.executeUpdate(sql_update);
+			}
 			conn.close();
 			panduan = true;
 		}catch(SQLException e){
@@ -231,6 +239,7 @@ public class PostSerDB {
 	public boolean delcollection(long user_id,long post_id){//删除收藏，针对某个用户删除收藏
 		conn = getconn.getConection();
 		boolean panduan = false;
+		int count = 0;
 		
 		try{
 			String sql_delect = "delete from homework.collection where(user_id="+user_id+" and post_id="+post_id+")";
@@ -425,5 +434,8 @@ public class PostSerDB {
 		return zan;
 	}
 	
-
+	public static void main(String[] args){
+		PostSerDB p = new PostSerDB();
+		p.delpost(1);
+	}
 }

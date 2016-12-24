@@ -240,6 +240,7 @@ public class UserSerDB {
 	public boolean qiandao(long user_id){//Ç©µ½
 		conn = getconn.getConection();
 		boolean panduan = false;
+		boolean qiandao = false;
 		int charge = 0;
 		
 		try{
@@ -249,9 +250,31 @@ public class UserSerDB {
 			while(rs.next()){
 				charge = rs.getInt(1) + 1;
 			}
-			String sql_update = "update user set user_purse="+charge+" where user_id="+user_id;
+			String sql_update = "update homewor.user set user_purse="+charge+" where user_id="+user_id;
 			st = (Statement) conn.createStatement();
 			int rst = st.executeUpdate(sql_update);
+			qiandao = true;
+			String sql_qiandao = "update homework.user set user_qiandao="+qiandao;
+			int x = st.executeUpdate(sql_qiandao);
+			conn.close();
+			panduan = true;
+		}catch(SQLException e){
+			System.out.println("SQLquery fail");
+			e.printStackTrace();
+			panduan = false;
+		}
+		return panduan;
+	}
+	public boolean qiandaorefresh(long user_id){	//qiandao refresh
+		conn = getconn.getConection();
+		boolean panduan = false;
+		boolean qiandao = false;
+		int charge = 0;
+		
+		try{
+			String sql_update = "update homework.user set user_qiandao="+qiandao;
+			st = (Statement) conn.createStatement();
+			int x = st.executeUpdate(sql_update);
 			conn.close();
 			panduan = true;
 		}catch(SQLException e){

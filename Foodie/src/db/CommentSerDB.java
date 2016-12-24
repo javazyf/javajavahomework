@@ -62,12 +62,20 @@ public class CommentSerDB {
 	//É¾³ýÆÀÂÛ
 	public boolean delcomment(long comment_id){//É¾³ýÆÀÂÛ
 		conn = getconn.getConection();
+		int count = 0;
 		
 		boolean panduan = false;
 		try{
 			String sql_del = "delete from homework.comment where comment_id="+comment_id;
 			st = (Statement)conn.createStatement();
 			st.executeUpdate(sql_del);
+			String sql_search = "select * from homework.comment";
+			rs = st.executeQuery(sql_search);
+			while(rs.next()){
+				count = count + 1;
+				String sql_update = "update homework.comment set comment_id="+count;
+				int y = st.executeUpdate(sql_update);
+			}
 			conn.close();
 			panduan = true;
 		}catch(SQLException e){
